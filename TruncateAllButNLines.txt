@@ -1,10 +1,16 @@
 echo "$(tail -10 myFile)" > myFile  # where 10 is the number of lines I want to keep
 
-You need to use $() for command substitution
-bash substitutes that part first and runs the tail command and echo
-then it redirects to the same filename.
+# You need to use $() for command substitution
+# bash substitutes that part first and runs the tail command and echo
+# then it redirects to the same filename.
 
 tail -10 myFile > myFile
-will fail and truncate the entire files, this is because the shell opens file descriptor 1 for writing it, in effect truncating it because of the single >, and THEN it executes the tail but the the file has already been emptied so it finds nothing there leaving you with a fully truncated file.  That's why you need the $().
+
+# will fail and truncate the entire file
+# this is because the shell opens file descriptor 1 for writing it
+# in effect truncating it because of the single >
+# and THEN it executes the tail but the the file has already been emptied
+# so it finds nothing there leaving you with a fully truncated file.
+# That's why you need the $().
 
 dak 3/9/21
