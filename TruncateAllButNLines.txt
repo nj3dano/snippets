@@ -1,7 +1,7 @@
 echo "$(tail -10 myFile)" > myFile  # where 10 is the number of lines I want to keep
 
 You need to use $() for command substitution
-bash substitutesthat part first and runs the tail command and echo
+bash substitutes that part first and runs the tail command and echo
 then it redirects to the same filename.
 
 tail -10 myFile > myFile
