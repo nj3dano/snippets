@@ -1,0 +1,6 @@
+read -p "Press y to continue or any other key to skip: "; echo ""
+myReply=${REPLY:0:1}
+if [[ ${myReply} == [yY] ]]
+then
+        echo "continue"
+fi
