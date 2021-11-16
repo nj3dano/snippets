@@ -1,0 +1,8 @@
+# mailx
+echo -e "Hello, The attached file contains test 1" | mailx -s "test1" -a file1.txt email1@gmail.com
+
+# sendmail
+(echo "Subject:this is the subject" && cat file1.txt) | sendmail -v "email1@gmail.com,email2@gmail.com"
+
+# restart
+systemctl restart postfix

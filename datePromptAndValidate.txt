@@ -1,0 +1,27 @@
+function dateCheck {
+        # date "+%Y-%m-%d" -d "2021-04-28"
+        local format="$1" d="$2"
+
+        if [[ ${d} =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] && [[ "$(date "+$format" -d "$d" 2>/dev/null)" == "$d" ]]
+        then
+                # date $d is valid
+                return 0
+        else
+                # date $d is invalid
+                return 99
+        fi
+}
+
+read -p "enter date yyyy-mm-dd you are looking for, or hit return to default to today: " myDate
+if [  -z "${myDate}" ]
+then
+        myDate=$(date +%Y-%m-%d)
+else
+        # checking on date format of value added by the user
+        if ! dateCheck "%Y-%m-%d" "${myDate}"
+        then
+                echo -e "The entered date value [${myDate}] is invalid"
+                echo -e "Please enter valid date formatted yyyy-mm-dd, exiting with error"
+                exit 98
+        fi
+fi
